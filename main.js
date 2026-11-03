@@ -112,10 +112,17 @@
   function setTick(k, v) { var n = document.querySelector('[data-tick="' + k + '"]'); if (n && v) n.textContent = v; }
   function loadTicker() {
     if (!window.fetch) return;
+    // Crypto: CoinGecko first, Coinbase as a backup if CoinGecko is busy.
+    function coinbase(pair, key) {
+      return fetch('https://api.coinbase.com/v2/prices/' + pair + '/spot')
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+        .then(function (j) { setTick(key, fmt(j.data.amount, 0)); })
+        .catch(function () {});
+    }
     fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd')
-      .then(function (r) { return r.json(); })
+      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
       .then(function (j) { setTick('btc', fmt(j.bitcoin.usd, 0)); setTick('eth', fmt(j.ethereum.usd, 0)); })
-      .catch(function () {});
+      .catch(function () { coinbase('BTC-USD', 'btc'); coinbase('ETH-USD', 'eth'); });
     fetch('https://open.er-api.com/v6/latest/USD')
       .then(function (r) { return r.json(); })
       .then(function (j) {

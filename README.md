@@ -13,6 +13,8 @@ A static website (plain HTML, CSS and JavaScript). It has no build step, so Clou
 | `favicon.svg` / `og-image.png` | Browser tab icon / preview image for LinkedIn and WhatsApp shares |
 | `robots.txt` / `sitemap.xml` | Tell Google what to index |
 | `_headers` | Security settings Cloudflare applies |
+| `wrangler.jsonc` | Cloudflare settings (shows the custom 404 page) |
+| `.assetsignore` | Keeps README and config files from being public |
 
 ## Publish: GitHub → Cloudflare Pages
 1. Unzip the file. On github.com, open **kaywood-website** → **Add file → Upload files**. Drag in **all the files** (not the folder itself) → **Commit changes**.
