@@ -318,3 +318,39 @@ code{font:13px var(--mono);color:var(--blue);word-break:break-all}
 @media (max-width:860px){.asset-picks{grid-template-columns:1fr 1fr}.machine-stage{max-width:320px}}
 
 [hidden]{display:none !important}
+
+/* ---------- Access box: balance + custom select arrow ---------- */
+.access{align-items:center}
+.access__copy{align-self:center}
+select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:48px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23E8ECF1' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 20px center;background-size:14px}
+.access__form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2307090D' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")}
+.access__form select,.subscribe select{background-repeat:no-repeat;background-position:right 20px center;background-size:14px}
+
+/* ---------- Request access (design B) ---------- */
+.req{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line-2);border-radius:24px;padding:clamp(28px,5vw,56px);display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+.req::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--lime),var(--blue))}
+.req__copy{flex:1 1 380px;min-width:0}
+.req__copy h2{font-size:clamp(36px,4.6vw,56px);letter-spacing:-.03em;line-height:1}
+.req__steps{list-style:none;margin:32px 0 0;padding:0}
+.req__steps li{display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.req__steps li:last-child{border-bottom:1px solid var(--line)}
+.req__steps .mono{font-size:13px;width:24px;flex:none;padding-top:3px}
+.req__steps h3{font-size:17px}.req__steps p{margin-top:4px;color:var(--muted);font-size:14px}
+.req__form{flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.req__form .mono{color:var(--dim);margin-top:8px}
+.req__form input[type="text"],.req__form input[type="email"]{border-radius:14px}
+.req__two{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.req__two>div{display:flex;flex-direction:column;gap:8px}
+.req__form .consent{margin-top:8px}
+.req__form .btn{margin-top:10px}
+.req__fine{font-size:12px;color:var(--dim)}
+.seg{border:0;margin:0;padding:0;min-width:0}
+.seg legend{padding:0;margin-bottom:8px;font-size:12px;color:var(--dim)}
+.seg__opts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px;border:1px solid var(--line-2);border-radius:999px;background:var(--bg)}
+.seg__opts input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.seg__opts label{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 10px;border-radius:999px;color:#B7C0CC;font:500 14px var(--sans);cursor:pointer;text-align:center;transition:background .2s,color .2s}
+.seg__opts label:hover{color:var(--text)}
+.seg__opts input:checked+label{background:var(--lime);color:var(--bg);font-weight:600}
+.seg__opts input:focus-visible+label{outline:2px solid var(--lime);outline-offset:2px}

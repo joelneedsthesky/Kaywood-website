@@ -159,7 +159,7 @@
       var isAccess = data.form === 'access';
       var to = isAccess ? CONFIG.accessEmail : CONFIG.newsletterEmail;
       var subject = isAccess ? 'Access request (' + (data.type || 'investor') + ')' : 'Subscribe to Kaywood Signals';
-      var body = isAccess ? 'Name: ' + (data.name || '') + '\nEmail: ' + data.email + '\nI am: ' + (data.type || '') : 'Please add ' + data.email + ' to the weekly briefing.';
+      var body = isAccess ? 'Name: ' + (data.name || '') + '\nCompany: ' + (data.company || '-') + '\nEmail: ' + data.email + '\nI am: ' + (data.type || '') : 'Please add ' + data.email + ' to the weekly briefing.';
       window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       msg.textContent = 'Opening your email app to send the request…'; msg.classList.add('ok');
     });
@@ -343,7 +343,7 @@
       choose(Object.keys(ASSETS)[idx]); go.focus();
     });
     document.getElementById('token-cta').addEventListener('click', function () {
-      var sel = document.getElementById('a-type'); if (sel) sel.value = this.getAttribute('data-role');
+      var r = document.getElementById('r-' + this.getAttribute('data-role')); if (r) r.checked = true;
     });
     labels(current); setProgress(0);
   }
@@ -426,7 +426,7 @@
   function initCtas() {
     document.querySelectorAll('[data-role]').forEach(function (a) {
       a.addEventListener('click', function () {
-        var sel = $('#a-type'); if (sel) sel.value = a.getAttribute('data-role');
+        var r = document.getElementById('r-' + a.getAttribute('data-role')); if (r) r.checked = true;
       });
     });
   }

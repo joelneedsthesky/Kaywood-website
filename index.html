@@ -539,24 +539,35 @@
 
     <!-- ACCESS -->
     <section id="access" class="wrap section">
-      <div class="access">
-        <div class="access__copy">
-          <h2>Get on the access list.</h2>
-          <p>For qualified investors and asset owners. We follow up with eligibility checks and materials.</p>
+      <div class="req">
+        <div class="req__copy">
+          <p class="kicker">// request_access</p>
+          <h2>Get on the <span class="accent">access list.</span></h2>
+          <p class="lead--sm mt-18">For qualified investors, asset owners and institutional partners.</p>
+          <ol class="req__steps">
+            <li><span class="mono accent">01</span><div><h3>Tell us who you are</h3><p>Two minutes. No commitment.</p></div></li>
+            <li><span class="mono accent">02</span><div><h3>Eligibility check</h3><p>We confirm you qualify, privately.</p></div></li>
+            <li><span class="mono accent">03</span><div><h3>Intro call &amp; materials</h3><p>A conversation, then access to the pipeline.</p></div></li>
+          </ol>
         </div>
-        <form class="access__form" data-form="access" novalidate>
-          <label for="a-type" class="mono">i am</label>
-          <select id="a-type" name="type">
-            <option value="investor">An investor</option>
-            <option value="owner">An asset owner</option>
-            <option value="partner">An institution or partner</option>
-          </select>
-          <label for="a-name" class="mono">name</label>
-          <input id="a-name" name="name" type="text" autocomplete="name" required>
+        <form class="req__form" data-form="access" novalidate>
+          <fieldset class="seg">
+            <legend class="mono">i am</legend>
+            <div class="seg__opts">
+              <input type="radio" name="type" id="r-investor" value="investor" checked><label for="r-investor">Investor</label>
+              <input type="radio" name="type" id="r-owner" value="owner"><label for="r-owner">Asset owner</label>
+              <input type="radio" name="type" id="r-partner" value="partner"><label for="r-partner">Partner</label>
+            </div>
+          </fieldset>
+          <div class="req__two">
+            <div><label for="a-name" class="mono">name</label><input id="a-name" name="name" type="text" autocomplete="name" placeholder="Full name" required></div>
+            <div><label for="a-company" class="mono">company</label><input id="a-company" name="company" type="text" autocomplete="organization" placeholder="Optional"></div>
+          </div>
           <label for="a-email" class="mono">email</label>
           <input id="a-email" name="email" type="email" autocomplete="email" placeholder="name@firm.com" required>
           <label class="consent"><input type="checkbox" name="consent" required> <span>I agree that Kaywood Capital may contact me and accept the <a href="/privacy">privacy policy</a>.</span></label>
-          <button type="submit" class="btn btn--dark">Request access</button>
+          <button type="submit" class="btn btn--primary">Request access →</button>
+          <p class="req__fine mono">We reply within [2 business days]. Your details stay private.</p>
           <p class="form-msg" role="status"></p>
         </form>
       </div>
