@@ -269,3 +269,52 @@ code{font:13px var(--mono);color:var(--blue);word-break:break-all}
 .pillar__more::after{content:" →"}
 .pillars .pillar[aria-selected="true"] .pillar__more::after{content:" ↓"}
 #tab-tokenization .pillar__no{color:var(--lime)}
+
+/* ---------- Background network mesh ---------- */
+#bg-mesh{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.ticker,main,footer{position:relative;z-index:1}
+.header{z-index:5}
+
+/* ---------- Tokenization machine ---------- */
+.machine-grid{margin-top:56px;display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.machine-controls{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.asset-picks{display:grid;grid-template-columns:1fr;gap:8px}
+.asset-pick{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 16px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--text-2);font:500 15px var(--sans);cursor:pointer;text-align:left;transition:border-color .2s,background .2s,color .2s,transform .2s}
+.asset-pick svg{color:var(--dim);transition:color .2s}
+.asset-pick:hover{border-color:var(--line-2);transform:translateX(3px)}
+.asset-pick[aria-pressed="true"]{border-color:var(--lime);background:#10160C;color:var(--text)}
+.asset-pick[aria-pressed="true"] svg{color:var(--lime)}
+.asset-pick:disabled,.machine-go:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.machine-go{align-self:flex-start;min-width:180px}
+.machine-status{min-height:3em;color:var(--muted);font-size:13px;line-height:1.5}
+.machine-stage{flex:1 1 300px;min-width:0;max-width:400px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.machine{width:100%;height:auto;overflow:visible}
+.token-out{flex:1 1 300px;min-width:0;overflow:hidden;align-self:center}
+.token-out__empty{display:flex;flex-direction:column;gap:12px;padding:8px 0 4px}
+.token-out__result{animation:panelIn .45s ease-out}
+.token-out__actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.machine-note{margin-top:28px;text-align:center}
+
+.in-asset{opacity:0;transform:translate(150px,-40px);transition:transform .8s cubic-bezier(.5,0,.75,0),opacity .3s}
+.in-asset.show{opacity:1;transform:translate(150px,-40px);transition:opacity .3s}
+.in-asset.drop{opacity:0;transform:translate(150px,40px) scale(.4);transition:transform .8s cubic-bezier(.55,0,.9,.4),opacity .5s .4s}
+.dome-coins{transform-origin:150px 150px;transform-box:view-box}
+.dome-coins.spin{animation:domeSpin 1.6s linear infinite}
+.dome-coins .dc{transition:opacity .3s}
+@keyframes domeSpin{to{transform:rotate(360deg)}}
+.stage-dot{fill:#1E2530;transition:fill .3s}
+.stage-label{fill:var(--dim);transition:fill .3s}
+.stage.on .stage-dot{fill:var(--lime);filter:drop-shadow(0 0 4px rgba(197,242,90,.9))}
+.stage.on .stage-label{fill:var(--text)}
+#progress{transition:height .5s ease,y .5s ease}
+.slot-light{transition:opacity .3s}
+.machine.busy .slot-light{animation:blink .5s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.out-coin{opacity:0}
+.out-coin.drop{animation:coinDrop .9s cubic-bezier(.3,.7,.4,1) forwards}
+@keyframes coinDrop{0%{opacity:0;transform:translate(150px,404px) scale(.6)}25%{opacity:1}70%{transform:translate(150px,474px) scale(1)}85%{transform:translate(150px,464px)}100%{opacity:1;transform:translate(150px,470px)}}
+.out-coin.rest{opacity:1}
+@media (prefers-reduced-motion:reduce){.dome-coins.spin,.machine.busy .slot-light{animation:none}.out-coin.drop{animation:none;opacity:1}.in-asset,.in-asset.drop{transition:none}}
+@media (max-width:860px){.asset-picks{grid-template-columns:1fr 1fr}.machine-stage{max-width:320px}}
+
+[hidden]{display:none !important}

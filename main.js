@@ -165,6 +165,189 @@
     });
   }
 
+  /* ---------- Background network mesh ---------- */
+  function initMeshBg() {
+    var cv = document.getElementById('bg-mesh');
+    if (!cv || !cv.getContext) return;
+    var cx = cv.getContext('2d');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 0, H = 0, pts = [], raf = null, fade = 1;
+    var mouse = { x: 0, y: 0, tx: 0, ty: 0, on: false };
+    var LIME = '197,242,90', GREY = '138,148,163', D = 140;
+
+    function seed() {
+      var n = Math.round(Math.min(W < 760 ? 45 : 110, (W * H) / (W < 760 ? 16000 : 14000)));
+      pts = [];
+      for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() * 1.4 + .8, lime: Math.random() < .12 });
+    }
+    function resize() {
+      W = window.innerWidth; H = window.innerHeight;
+      cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      seed(); if (reduce) draw();
+    }
+    function updateFade() {
+      // Full strength over the hero, calmer further down the page
+      var hero = document.querySelector('.hero');
+      var limit = hero ? hero.offsetTop + hero.offsetHeight : H;
+      fade = Math.max(.35, 1 - (window.pageYOffset / limit) * .65);
+    }
+    function draw() {
+      cx.clearRect(0, 0, W, H);
+      var i, a, b;
+      for (i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        if (!reduce) { p.x += p.vx; p.y += p.vy; }
+        if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20;
+        if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20;
+        if (mouse.on) { var dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.sqrt(dx * dx + dy * dy); if (d < 180 && d > 1) { p.x += dx / d * .15; p.y += dy / d * .15; } }
+      }
+      cx.lineWidth = 1;
+      for (a = 0; a < pts.length; a++) for (b = a + 1; b < pts.length; b++) {
+        var A = pts[a], B = pts[b], ex = A.x - B.x, ey = A.y - B.y, dd = ex * ex + ey * ey;
+        if (dd < D * D) { cx.strokeStyle = 'rgba(' + ((A.lime || B.lime) ? LIME : GREY) + ',' + ((1 - Math.sqrt(dd) / D) * .32 * fade) + ')'; cx.beginPath(); cx.moveTo(A.x, A.y); cx.lineTo(B.x, B.y); cx.stroke(); }
+      }
+      if (mouse.on) for (i = 0; i < pts.length; i++) {
+        var P = pts[i], mx = P.x - mouse.x, my = P.y - mouse.y, md = Math.sqrt(mx * mx + my * my);
+        if (md < 180) { cx.strokeStyle = 'rgba(' + LIME + ',' + ((1 - md / 180) * .45 * fade) + ')'; cx.beginPath(); cx.moveTo(P.x, P.y); cx.lineTo(mouse.x, mouse.y); cx.stroke(); }
+      }
+      for (i = 0; i < pts.length; i++) {
+        var q = pts[i];
+        cx.fillStyle = q.lime ? 'rgba(' + LIME + ',' + (.9 * fade) + ')' : 'rgba(200,210,222,' + (.5 * fade) + ')';
+        if (q.lime) { cx.shadowColor = 'rgba(' + LIME + ',.8)'; cx.shadowBlur = 10; }
+        cx.beginPath(); cx.arc(q.x, q.y, q.lime ? q.r + .8 : q.r, 0, Math.PI * 2); cx.fill(); cx.shadowBlur = 0;
+      }
+    }
+    function frame() {
+      mouse.x += (mouse.tx - mouse.x) * .12; mouse.y += (mouse.ty - mouse.y) * .12;
+      draw(); raf = requestAnimationFrame(frame);
+    }
+    function start() { if (reduce) return; cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('scroll', updateFade, { passive: true });
+    window.addEventListener('mousemove', function (e) { mouse.tx = e.clientX; mouse.ty = e.clientY; if (!mouse.on) { mouse.x = mouse.tx; mouse.y = mouse.ty; } mouse.on = true; });
+    document.addEventListener('mouseleave', function () { mouse.on = false; });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) cancelAnimationFrame(raf); else start(); });
+    resize(); updateFade(); start();
+  }
+
+  /* ---------- Tokenization machine ---------- */
+  var ICONS = {
+    land: '<path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/>',
+    art: '<path d="M3 4h18v16H3z"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/>',
+    shares: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    crypto: '<circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2.2 2.2 0 0 1 0 4.4h-4zM9.5 11.9h4.6a2.3 2.3 0 0 1 0 4.6H9.5zM9.5 7.5v9M11 6v1.5M11 16.5V18M13 6v1.5M13 16.5V18"/>'
+  };
+  var ASSETS = {
+    land: {
+      name: 'Lisbon Land Plot', type: 'Real estate · tokenized',
+      stages: ['VERIFY', 'STRUCTURE', 'MINT', 'DISTRIBUTE'],
+      status: ['Checking title, valuation and permits…', 'Placing the land in an SPV with a legal opinion…', 'Minting 10,000 permissioned tokens…', 'Opening the offering to verified investors…'],
+      rows: [['asset', 'Land · Lisbon'], ['wrapper', 'SPV'], ['token', 'Permissioned'], ['supply', '10,000 fractions'], ['holders', 'KYC-verified only'], ['income', 'Rent & sale proceeds']],
+      cta: ['Tokenize a property with us →', 'owner']
+    },
+    art: {
+      name: 'Contemporary Artwork', type: 'Art & IP · NFT + fractions',
+      stages: ['VERIFY', 'STRUCTURE', 'MINT', 'DISTRIBUTE'],
+      status: ['Confirming authenticity and provenance…', 'Securing the work and setting up the rights…', 'Minting 1 NFT, split into 5,000 fractions…', 'Listing for verified collectors and investors…'],
+      rows: [['asset', 'Artwork · original'], ['custody', 'Insured storage'], ['token', 'NFT + fractions'], ['supply', '5,000 fractions'], ['provenance', 'Recorded on-chain'], ['royalties', 'Paid to holders']],
+      cta: ['Tokenize art or IP with us →', 'owner']
+    },
+    shares: {
+      name: 'Private Company Shares', type: 'Equity · tokenized cap table',
+      stages: ['VERIFY', 'STRUCTURE', 'MINT', 'DISTRIBUTE'],
+      status: ['Reviewing the cap table and company records…', 'Setting transfer rules and shareholder rights…', 'Minting share tokens with rules built in…', 'Distributing to approved shareholders…'],
+      rows: [['asset', 'Private equity'], ['wrapper', 'Share class'], ['token', 'Permissioned'], ['supply', '250,000 shares'], ['transfers', 'Rules enforced on-chain'], ['dividends', 'Paid on-chain']],
+      cta: ['Tokenize your company shares →', 'owner']
+    },
+    crypto: {
+      name: 'Bitcoin (BTC)', type: 'Digital asset · already native',
+      stages: ['VERIFY', 'CUSTODY', 'ALLOCATE', 'REPORT'],
+      status: ['Checking the source of funds…', 'Moving to qualified cold storage…', 'Allocating within the risk budget…', 'Reporting holdings to investors…'],
+      rows: [['asset', 'Bitcoin'], ['minting', 'Not needed: native'], ['custody', 'Qualified, cold first'], ['sizing', 'Risk-budgeted'], ['reporting', 'Regular to investors'], ['holders', 'Fund investors']],
+      cta: ['Request the strategy overview →', 'investor']
+    }
+  };
+
+  function initMachine() {
+    var svg = document.getElementById('machine-svg');
+    if (!svg) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var picks = Array.prototype.slice.call(document.querySelectorAll('.asset-pick'));
+    var go = document.getElementById('machine-go'), again = document.getElementById('machine-again');
+    var status = document.getElementById('machine-status');
+    var inAsset = document.getElementById('in-asset'), inIcon = document.getElementById('in-asset-icon');
+    var coins = document.getElementById('dome-coins'), outCoin = document.getElementById('out-coin'), outIcon = document.getElementById('out-coin-icon');
+    var stages = Array.prototype.slice.call(svg.querySelectorAll('.stage')), progress = document.getElementById('progress');
+    var empty = document.getElementById('token-empty'), result = document.getElementById('token-result');
+    var current = 'land', busy = false;
+
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
+    function setProgress(f) { var h = 94 * f; progress.setAttribute('height', h); progress.setAttribute('y', 383 + 0 - h + 0); }
+    function labels(a) { stages.forEach(function (s, i) { s.querySelector('text').textContent = ASSETS[a].stages[i]; }); }
+    function reset() {
+      stages.forEach(function (s) { s.classList.remove('on'); });
+      setProgress(0);
+      outCoin.classList.remove('drop', 'rest');
+      inAsset.classList.remove('show', 'drop');
+      empty.hidden = false; result.hidden = true;
+      status.textContent = 'Ready. Pick an asset and press tokenize.';
+    }
+    function lock(on) { busy = on; go.disabled = on; picks.forEach(function (p) { p.disabled = on; }); svg.classList.toggle('busy', on); }
+    function choose(a) {
+      if (busy) return;
+      current = a;
+      picks.forEach(function (p) { p.setAttribute('aria-pressed', p.getAttribute('data-asset') === a ? 'true' : 'false'); });
+      labels(a); reset();
+    }
+    function showResult(a) {
+      var d = ASSETS[a];
+      document.getElementById('token-icon').innerHTML = ICONS[a];
+      document.getElementById('token-name').textContent = d.name;
+      document.getElementById('token-type').textContent = d.type;
+      var rows = document.getElementById('token-rows'); rows.innerHTML = '';
+      d.rows.forEach(function (r) {
+        var div = document.createElement('div'), dt = document.createElement('dt'), dd = document.createElement('dd');
+        dt.textContent = r[0]; dd.textContent = r[1]; div.appendChild(dt); div.appendChild(dd); rows.appendChild(div);
+      });
+      var cta = document.getElementById('token-cta'); cta.textContent = d.cta[0]; cta.setAttribute('data-role', d.cta[1]);
+      empty.hidden = true; result.hidden = false;
+    }
+    async function run() {
+      if (busy) return;
+      var a = current, d = ASSETS[a];
+      reset(); lock(true);
+      inIcon.innerHTML = ICONS[a]; outIcon.innerHTML = ICONS[a];
+      status.textContent = 'Feeding the ' + d.name.toLowerCase() + ' into the machine…';
+      inAsset.classList.add('show'); await wait(350);
+      inAsset.classList.add('drop'); await wait(800);
+      coins.classList.add('spin');
+      for (var i = 0; i < 4; i++) {
+        status.textContent = (i + 1) + '/4 · ' + d.status[i];
+        stages[i].classList.add('on'); setProgress((i + 1) / 4);
+        await wait(850);
+      }
+      coins.classList.remove('spin');
+      status.textContent = 'Done. Your token is ready.';
+      outCoin.classList.add(reduce ? 'rest' : 'drop');
+      await wait(700);
+      showResult(a);
+      lock(false);
+    }
+
+    picks.forEach(function (p) { p.addEventListener('click', function () { choose(p.getAttribute('data-asset')); }); });
+    go.addEventListener('click', run);
+    again.addEventListener('click', function () {
+      var idx = (Object.keys(ASSETS).indexOf(current) + 1) % 4;
+      choose(Object.keys(ASSETS)[idx]); go.focus();
+    });
+    document.getElementById('token-cta').addEventListener('click', function () {
+      var sel = document.getElementById('a-type'); if (sel) sel.value = this.getAttribute('data-role');
+    });
+    labels(current); setProgress(0);
+  }
+
   /* ---------- Pillar tabs ---------- */
   function initTabs() {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.pillars [role="tab"]'));
@@ -252,7 +435,7 @@
     if ($('#map')) { buildGrid(); buildFilters(); buildNodes(); render(false); }
     loadTicker();
     document.querySelectorAll('form[data-form]').forEach(handleForm);
-    initNav(); initCtas(); initTabs();
+    initNav(); initCtas(); initTabs(); initMeshBg(); initMachine();
     var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
   });
 })();

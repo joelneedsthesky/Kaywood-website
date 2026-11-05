@@ -36,6 +36,7 @@
   </script>
 </head>
 <body>
+  <canvas id="bg-mesh" aria-hidden="true"></canvas>
   <a class="skip" href="#main">Skip to content</a>
 
   <div class="ticker" aria-label="Market prices">
@@ -197,40 +198,40 @@
         <div class="split">
           <div class="split__main">
             <p class="kicker">// digital_assets</p>
-            <h2 class="h2--xl">Digital assets, <span class="accent">built in layers.</span></h2>
+            <h2 class="h2--xl">Crypto exposure, <span class="accent">risk managed first.</span></h2>
           </div>
-          <p class="split__side lead--sm">We allocate by layer, not by impulse. Each layer has a role, a target and rules for how capital enters, so the portfolio follows the thesis and is reviewed against the macro signals we track.</p>
+          <p class="split__side lead--sm">We hold and trade liquid digital assets and use stablecoin rails to move capital across borders. Every position is sized to a clear risk budget, held with institutional-grade custody and reviewed against the macro signals we track.</p>
         </div>
 
         <div class="grid grid--4 mt-56">
           <div class="card asset">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 8h4.5a2.5 2.5 0 0 1 0 5H9m0-5v8m0-3h5a2.5 2.5 0 0 1 0 5H9M11 6v2m0 8v2"/></svg>
-            <h3>Core Reserve</h3>
-            <p>Our core layers are our largest allocation. Built patiently, held for the long term.</p>
+            <h3>Core holdings</h3>
+            <p>Bitcoin and Ether as the liquid base of the portfolio, held for the long term.</p>
           </div>
           <div class="card asset">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>
-            <h3>Settlement Rails</h3>
-            <p>Dollar-stablecoin infrastructure for settlement, liquidity and fast cross-border movement, with a focus on emerging markets.</p>
+            <h3>Stablecoins &amp; rails</h3>
+            <p>Dollar stablecoins for settlement, liquidity and fast cross-border transfers, especially in emerging markets.</p>
           </div>
           <div class="card asset">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
-            <h3>Yield</h3>
-            <p>Income, earned on-chain. We use staking and lending through established protocols to turn conviction into a steady income stream.</p>
+            <h3>On-chain yield</h3>
+            <p>Staking and lending only where the risk is understood and counterparties are vetted.</p>
           </div>
           <div class="card asset">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
-            <h3>Thematic</h3>
-            <p>Own the layer. A small, capped allocation to the infrastructure and protocols we believe will run the future of finance.</p>
+            <h3>Thematic positions</h3>
+            <p>Tokenized real-world assets, infrastructure and protocols that fit our thesis.</p>
           </div>
         </div>
 
         <p class="mono muted mt-64 mb-20">how_it_works</p>
         <ol class="steps">
-          <li><span class="mono accent">01 — Thesis</span><span>A written fund thesis sets the layers and their target weights before any capital moves.</span></li>
-          <li><span class="mono accent">02 — Size</span><span>Positions follow the target allocation and are built through a fixed-schedule DCA policy.</span></li>
-          <li><span class="mono accent">03 — Custody</span><span>Every purchase cycle ends in cold storage, under written custody rules.</span></li>
-          <li><span class="mono accent">04 — Review</span><span>The allocation is reviewed against its targets on a set cadence, with rebalancing rules defined in advance.</span></li>
+          <li><span class="mono accent">01 — Thesis</span><span>Macro and on-chain signals set the view before any capital moves.</span></li>
+          <li><span class="mono accent">02 — Size</span><span>Each position is sized to a defined risk budget.</span></li>
+          <li><span class="mono accent">03 — Custody</span><span>Assets held with qualified custodians, cold storage first.</span></li>
+          <li><span class="mono accent">04 — Review</span><span>Continuous monitoring with exit rules set in advance.</span></li>
         </ol>
 
         <ul class="chips-static">
@@ -451,17 +452,89 @@
       </div>
     </section>
 
-    <!-- TRANSPARENCY -->
-    <section class="wrap section--tight pt-96">
-      <div class="row-between">
-        <h2 class="h2--sm">Don’t trust the deck. Check the chain.</h2>
-        <span class="mono muted">// verifiable_by_design</span>
+    <!-- TOKENIZATION MACHINE -->
+    <section id="machine" class="wrap section">
+      <div class="split">
+        <div class="split__main">
+          <p class="kicker">// tokenization_machine</p>
+          <h2>See tokenization <span class="accent">in action.</span></h2>
+        </div>
+        <p class="split__side lead--sm">Pick an asset, press tokenize, and watch it move through the same four stages every Kaywood deal goes through.</p>
       </div>
-      <div class="grid grid--3 mt-28">
-        <div class="card mini"><h3>Public treasury</h3><code>[TREASURY ADDRESS]</code></div>
-        <div class="card mini"><h3>Independent attestation</h3><code>[ATTESTATION PROVIDER]</code></div>
-        <div class="card mini"><h3>Token registry</h3><code>[CONTRACT ADDRESSES]</code></div>
+
+      <div class="machine-grid">
+        <div class="machine-controls">
+          <p class="mono muted">01 · pick an asset</p>
+          <div class="asset-picks" role="group" aria-label="Choose an asset to tokenize">
+            <button type="button" class="asset-pick" data-asset="land" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Land &amp; property</button>
+            <button type="button" class="asset-pick" data-asset="art" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 4h18v16H3z"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>Artwork &amp; IP</button>
+            <button type="button" class="asset-pick" data-asset="shares" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Company shares</button>
+            <button type="button" class="asset-pick" data-asset="crypto" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2.2 2.2 0 0 1 0 4.4h-4zM9.5 11.9h4.6a2.3 2.3 0 0 1 0 4.6H9.5zM9.5 7.5v9M11 6v1.5M11 16.5V18M13 6v1.5M13 16.5V18"/></svg>Digital assets</button>
+          </div>
+          <p class="mono muted mt-28">02 · run it</p>
+          <button type="button" class="btn btn--primary machine-go" id="machine-go">Tokenize →</button>
+          <p class="machine-status mono" id="machine-status" role="status" aria-live="polite">Ready. Pick an asset and press tokenize.</p>
+        </div>
+
+        <div class="machine-stage">
+          <svg class="machine" id="machine-svg" viewBox="0 -70 300 570" role="img" aria-label="Tokenization machine: an asset goes in the top, passes four stages, and comes out as a token">
+            <defs>
+              <filter id="mglow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="4"/></filter>
+              <clipPath id="domeclip"><circle cx="150" cy="150" r="104"/></clipPath>
+            </defs>
+            <g id="in-asset" class="in-asset" transform="translate(150 -40)">
+              <rect x="-24" y="-24" width="48" height="48" rx="12" fill="#10160C" stroke="#C5F25A" stroke-width="1.5"/>
+              <g id="in-asset-icon" transform="translate(-14 -14) scale(1.17)" fill="none" stroke="#C5F25A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></g>
+            </g>
+            <rect x="118" y="20" width="64" height="16" rx="5" fill="#1E2530" stroke="#2C3646"/>
+            <rect x="132" y="26" width="36" height="3" rx="1.5" fill="#C5F25A" class="slot-light"/>
+            <circle cx="150" cy="150" r="110" fill="rgba(110,168,255,.04)" stroke="#2C3646" stroke-width="2"/>
+            <g clip-path="url(#domeclip)"><g id="dome-coins" class="dome-coins"><g class="dc" transform="translate(105 120)"><circle r="12" fill="#C5F25A"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(150 95)"><circle r="12" fill="#6EA8FF"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(195 125)"><circle r="12" fill="#3A475C"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(125 165)"><circle r="12" fill="#3A475C"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(178 170)"><circle r="12" fill="#C5F25A"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(150 140)"><circle r="12" fill="#E8ECF1"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(95 185)"><circle r="12" fill="#6EA8FF"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(205 195)"><circle r="12" fill="#E8ECF1"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(150 205)"><circle r="12" fill="#C5F25A"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(120 215)"><circle r="12" fill="#3A475C"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(185 90)"><circle r="12" fill="#3A475C"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g><g class="dc" transform="translate(115 80)"><circle r="12" fill="#E8ECF1"/><circle r="8" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.2"/></g></g></g>
+            <path d="M80 85 A85 85 0 0 1 135 52" fill="none" stroke="#E8ECF1" stroke-opacity=".12" stroke-width="5" stroke-linecap="round"/>
+            <rect x="88" y="252" width="124" height="16" rx="6" fill="#1E2530" stroke="#2C3646"/>
+            <rect x="52" y="266" width="196" height="150" rx="18" fill="#0F131A" stroke="#2C3646" stroke-width="1.5"/>
+            <g id="stages" font-family="JetBrains Mono, monospace" font-size="12">
+              <g class="stage" data-i="0"><circle cx="84" cy="294" r="6" class="stage-dot"/><text x="100" y="298" class="stage-label">VERIFY</text></g>
+              <g class="stage" data-i="1"><circle cx="84" cy="322" r="6" class="stage-dot"/><text x="100" y="326" class="stage-label">STRUCTURE</text></g>
+              <g class="stage" data-i="2"><circle cx="84" cy="350" r="6" class="stage-dot"/><text x="100" y="354" class="stage-label">MINT</text></g>
+              <g class="stage" data-i="3"><circle cx="84" cy="378" r="6" class="stage-dot"/><text x="100" y="382" class="stage-label">DISTRIBUTE</text></g>
+            </g>
+            <rect x="214" y="286" width="18" height="100" rx="9" fill="#07090D" stroke="#2C3646"/>
+            <rect id="progress" x="217" y="383" width="12" height="0" rx="6" fill="#C5F25A"/>
+            <rect x="108" y="396" width="84" height="20" rx="6" fill="#07090D" stroke="#2C3646"/>
+            <rect x="40" y="414" width="220" height="22" rx="9" fill="#1E2530" stroke="#2C3646"/>
+            <rect x="92" y="446" width="116" height="48" rx="12" fill="#0B0E13" stroke="#2C3646"/>
+            <g id="out-coin" class="out-coin" transform="translate(150 470)">
+              <circle r="24" fill="#C5F25A" filter="url(#mglow)" opacity=".55"/>
+              <circle r="21" fill="#C5F25A"/>
+              <circle r="16.5" fill="none" stroke="#07090D" stroke-opacity=".35" stroke-width="1.4"/>
+              <g id="out-coin-icon" transform="translate(-10.5 -10.5) scale(.875)" fill="none" stroke="#07090D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></g>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="card token-out" id="token-out" aria-live="polite">
+          <div class="card__bar"><span>minted_token</span><span>example</span></div>
+          <div class="token__body">
+            <div class="token-out__empty" id="token-empty">
+              <p class="mono muted">03 · your token appears here</p>
+              <p class="muted">Every token Kaywood issues carries its rules with it: who can hold it, how it can move, and what it pays.</p>
+            </div>
+            <div class="token-out__result" id="token-result" hidden>
+              <div class="token__head">
+                <div class="token__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="token-icon"></svg></div>
+                <div><div class="token__name" id="token-name"></div><div class="mono muted" id="token-type"></div></div>
+              </div>
+              <dl class="token__rows mono" id="token-rows"></dl>
+              <div class="token-out__actions">
+                <button type="button" class="btn btn--ghost btn--sm" id="machine-again">Try another asset</button>
+                <a href="#access" class="btn btn--primary btn--sm" id="token-cta" data-role="owner">Tokenize a real asset →</a>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
+      <p class="mono muted machine-note">Illustration only. Not an offer of any token or security.</p>
     </section>
 
     <!-- ACCESS -->
