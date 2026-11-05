@@ -165,6 +165,69 @@
     });
   }
 
+  /* ---------- Pillar tabs ---------- */
+  function initTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.pillars [role="tab"]'));
+    if (!tabs.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function select(tab, opts) {
+      opts = opts || {};
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        var p = document.getElementById(t.getAttribute('aria-controls'));
+        if (!p) return;
+        if (on) { p.hidden = false; p.classList.remove('is-active'); void p.offsetWidth; p.classList.add('is-active'); }
+        else { p.hidden = true; p.classList.remove('is-active'); }
+      });
+      if (opts.focus) tab.focus();
+      if (opts.scroll) {
+        var panel = document.getElementById(tab.getAttribute('aria-controls'));
+        var top = panel.getBoundingClientRect().top;
+        // Only scroll if the panel's top is out of comfortable view
+        if (top > window.innerHeight * 0.75 || top < 0) {
+          var y = window.pageYOffset + top - 90;
+          window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+        }
+      }
+    }
+
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(t, { scroll: true }); history.replaceState(null, '', '#' + t.getAttribute('aria-controls')); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key, n = null;
+        if (k === 'ArrowRight' || k === 'ArrowDown') n = tabs[(i + 1) % tabs.length];
+        else if (k === 'ArrowLeft' || k === 'ArrowUp') n = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (k === 'Home') n = tabs[0];
+        else if (k === 'End') n = tabs[tabs.length - 1];
+        if (n) { e.preventDefault(); select(n, { focus: true }); }
+      });
+    });
+
+    // Links like #market-access or #tokenization open the matching tab
+    function fromHash(hash, scroll) {
+      var id = (hash || '').replace('#', '');
+      var tab = tabs.filter(function (t) { return t.getAttribute('aria-controls') === id; })[0];
+      if (tab) {
+        select(tab);
+        if (scroll) {
+          var panel = document.getElementById(id);
+          window.scrollTo({ top: window.pageYOffset + panel.getBoundingClientRect().top - 90, behavior: reduce ? 'auto' : 'smooth' });
+        }
+        return true;
+      }
+      return false;
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (fromHash(a.getAttribute('href'), true)) { e.preventDefault(); history.replaceState(null, '', a.getAttribute('href')); }
+      });
+    });
+    if (location.hash) setTimeout(function () { fromHash(location.hash, true); }, 50);
+  }
+
   /* ---------- Nav + misc ---------- */
   function initNav() {
     var btn = $('.menu-btn'), nav = $('#nav');
@@ -189,7 +252,7 @@
     if ($('#map')) { buildGrid(); buildFilters(); buildNodes(); render(false); }
     loadTicker();
     document.querySelectorAll('form[data-form]').forEach(handleForm);
-    initNav(); initCtas();
+    initNav(); initCtas(); initTabs();
     var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
   });
 })();

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kaywood Capital — Tokenization, RWA &amp; NFTs</title>
-  <meta name="description" content="We build the layer where real-world assets meet on-chain capital, and invest across digital assets with conviction, connecting Africa, the Gulf and the Lusophone world.">
+  <meta name="description" content="Kaywood Capital tokenizes real-world assets, from property to rights-backed NFTs, and invests across digital assets and currency markets, with trusted access to Africa, the Gulf and the Lusophone world.">
   <link rel="canonical" href="https://kaywoodcapital.com/">
   <meta name="theme-color" content="#07090D">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -75,7 +75,7 @@
       <div class="hero__copy">
         <span class="pill"><span class="dot"></span>Fund in formation · Lisbon</span>
         <h1>Real-world value, <span class="accent">on-chain.</span></h1>
-        <p class="lead">We build the layer where real-world assets meet on-chain capital, and invest across digital assets with conviction, connecting Africa, the Gulf and the Lusophone world.</p>
+        <p class="lead">Kaywood tokenizes real-world assets, from property to rights-backed NFTs, and invests across digital assets and currency markets, with trusted access to Africa, the Gulf and the Lusophone world.</p>
         <div class="actions">
           <a href="#tokenization" class="btn btn--primary">Explore tokenization</a>
           <a href="#signal" class="btn btn--ghost">Open the signal map</a>
@@ -99,35 +99,39 @@
       </aside>
     </section>
 
-    <!-- PILLARS -->
-    <section class="wrap section--tight">
-      <div class="grid grid--4">
-        <a href="#tokenization" class="pillar pillar--flag">
-          <span class="mono accent">01 / flagship</span>
+    <!-- PILLARS (tabs) -->
+    <section class="wrap section--tight" aria-label="What we do">
+      <div class="grid grid--4 pillars" role="tablist" aria-label="Our four pillars">
+        <button type="button" class="pillar" role="tab" id="tab-tokenization" aria-controls="tokenization" aria-selected="true">
+          <span class="mono pillar__no">01 / flagship</span>
           <h3>Tokenization</h3>
           <p>Real estate, private equity, credit and NFTs, issued as compliant on-chain tokens.</p>
-        </a>
-        <div class="pillar">
-          <span class="mono muted">02 / crypto</span>
+          <span class="pillar__more mono">explore</span>
+        </button>
+        <button type="button" class="pillar" role="tab" id="tab-digital-assets" aria-controls="digital-assets" aria-selected="false" tabindex="-1">
+          <span class="mono pillar__no">02 / crypto</span>
           <h3>Digital assets</h3>
           <p>Liquid crypto and stablecoin rails, sized with discipline.</p>
-        </div>
-        <div class="pillar">
-          <span class="mono muted">03 / fx</span>
+          <span class="pillar__more mono">explore</span>
+        </button>
+        <button type="button" class="pillar" role="tab" id="tab-currency-markets" aria-controls="currency-markets" aria-selected="false" tabindex="-1">
+          <span class="mono pillar__no">03 / fx</span>
           <h3>Currency markets</h3>
           <p>Emerging-market and major pairs, driven by policy and capital flows.</p>
-        </div>
-        <a href="#market-access" class="pillar">
-          <span class="mono muted">04 / access</span>
+          <span class="pillar__more mono">explore</span>
+        </button>
+        <button type="button" class="pillar" role="tab" id="tab-market-access" aria-controls="market-access" aria-selected="false" tabindex="-1">
+          <span class="mono pillar__no">04 / access</span>
           <h3>Market access</h3>
           <p>Institutional partnerships that open hard-to-reach markets.</p>
-        </a>
+          <span class="pillar__more mono">explore</span>
+        </button>
       </div>
     </section>
 
-    <!-- TOKENIZATION -->
-    <section id="tokenization" class="band">
-      <div class="wrap section">
+    <!-- PILLAR DETAIL PANELS -->
+    <section class="band panels" id="pillar-panels">
+      <div class="panel-tab wrap section is-active" id="tokenization" role="tabpanel" aria-labelledby="tab-tokenization">
         <div class="split">
           <div class="split__main">
             <p class="kicker">// tokenization</p>
@@ -188,6 +192,187 @@
           </a>
         </div>
       </div>
+
+      <div class="panel-tab wrap section" id="digital-assets" role="tabpanel" aria-labelledby="tab-digital-assets" hidden>
+        <div class="split">
+          <div class="split__main">
+            <p class="kicker">// digital_assets</p>
+            <h2 class="h2--xl">Crypto exposure, <span class="accent">risk managed first.</span></h2>
+          </div>
+          <p class="split__side lead--sm">We hold and trade liquid digital assets and use stablecoin rails to move capital across borders. Every position is sized to a clear risk budget, held with institutional-grade custody and reviewed against the macro signals we track.</p>
+        </div>
+
+        <div class="grid grid--4 mt-56">
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 8h4.5a2.5 2.5 0 0 1 0 5H9m0-5v8m0-3h5a2.5 2.5 0 0 1 0 5H9M11 6v2m0 8v2"/></svg>
+            <h3>Core holdings</h3>
+            <p>Bitcoin and Ether as the liquid base of the portfolio, held for the long term.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>
+            <h3>Stablecoins &amp; rails</h3>
+            <p>Dollar stablecoins for settlement, liquidity and fast cross-border transfers, especially in emerging markets.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+            <h3>On-chain yield</h3>
+            <p>Staking and lending only where the risk is understood and counterparties are vetted.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+            <h3>Thematic positions</h3>
+            <p>Tokenized real-world assets, infrastructure and protocols that fit our thesis.</p>
+          </div>
+        </div>
+
+        <p class="mono muted mt-64 mb-20">how_it_works</p>
+        <ol class="steps">
+          <li><span class="mono accent">01 — Thesis</span><span>Macro and on-chain signals set the view before any capital moves.</span></li>
+          <li><span class="mono accent">02 — Size</span><span>Each position is sized to a defined risk budget.</span></li>
+          <li><span class="mono accent">03 — Custody</span><span>Assets held with qualified custodians, cold storage first.</span></li>
+          <li><span class="mono accent">04 — Review</span><span>Continuous monitoring with exit rules set in advance.</span></li>
+        </ol>
+
+        <ul class="chips-static">
+          <li>Qualified custody · [partner]</li>
+          <li>Cold storage by default</li>
+          <li>Defined drawdown limits</li>
+          <li>EU-aligned · MiCA</li>
+        </ul>
+
+        <div class="grid grid--2 mt-56">
+          <a href="#access" data-role="investor" class="cta cta--lime">
+            <span class="mono">for investors</span>
+            <span class="cta__title">Request the strategy overview →</span>
+            <span>Our approach to digital assets, for qualified investors.</span>
+          </a>
+          <a href="#signals" class="cta">
+            <span class="mono muted">weekly</span>
+            <span class="cta__title">Read the crypto signals →</span>
+            <span class="muted">Short notes on stablecoins, flows and adoption in our markets.</span>
+          </a>
+        </div>
+      </div>
+      <div class="panel-tab wrap section" id="currency-markets" role="tabpanel" aria-labelledby="tab-currency-markets" hidden>
+        <div class="split">
+          <div class="split__main">
+            <p class="kicker">// currency_markets</p>
+            <h2 class="h2--xl">Where policy <span class="accent">moves money.</span></h2>
+          </div>
+          <p class="split__side lead--sm">Currencies are where political and economic shifts show up first. We trade major and emerging-market pairs, with particular depth in African and Lusophone currencies, where local knowledge is a real edge.</p>
+        </div>
+
+        <div class="grid grid--4 mt-56">
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+            <h3>Major pairs</h3>
+            <p>EUR, USD, GBP and JPY around central bank cycles and global risk sentiment.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            <h3>Emerging-market FX</h3>
+            <p>Kwanza, naira, cedi, real and metical: reform, liquidity and convertibility.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg>
+            <h3>Policy &amp; rates</h3>
+            <p>Central bank decisions, FX reforms and capital rules read as trading signals.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <h3>Deal-level FX risk</h3>
+            <p>Managing currency exposure across our tokenization and market access pipeline.</p>
+          </div>
+        </div>
+
+        <p class="mono muted mt-64 mb-20">how_it_works</p>
+        <ol class="steps">
+          <li><span class="mono accent">01 — Signal</span><span>Policy, capital flows and on-the-ground intelligence.</span></li>
+          <li><span class="mono accent">02 — Thesis</span><span>A clear view with a defined catalyst and timeframe.</span></li>
+          <li><span class="mono accent">03 — Execute</span><span>Liquid instruments and disciplined sizing.</span></li>
+          <li><span class="mono accent">04 — Protect</span><span>Stops and hedges set before entry, not after.</span></li>
+        </ol>
+
+        <ul class="chips-static">
+          <li>Coverage · AOA · NGN · GHS · BRL · MZN</li>
+          <li>Risk set before entry</li>
+          <li>Liquidity and convertibility first</li>
+          <li>Daily rate monitoring</li>
+        </ul>
+
+        <div class="grid grid--2 mt-56">
+          <a href="#signal" class="cta cta--lime">
+            <span class="mono">explore</span>
+            <span class="cta__title">View the signal map →</span>
+            <span>See the regions and currencies we are watching right now.</span>
+          </a>
+          <a href="#signals" class="cta">
+            <span class="mono muted">weekly</span>
+            <span class="cta__title">Get the FX briefing →</span>
+            <span class="muted">Kaywood Signals: currency notes in your inbox each week.</span>
+          </a>
+        </div>
+      </div>
+      <div class="panel-tab wrap section" id="market-access" role="tabpanel" aria-labelledby="tab-market-access" hidden>
+        <div class="split">
+          <div class="split__main">
+            <p class="kicker">// market_access</p>
+            <h2 class="h2--xl">Access, built on <span class="accent">relationships.</span></h2>
+          </div>
+          <p class="split__side lead--sm">Through long-standing work with state companies, development institutions and private partners across Africa and the Lusophone world, we help capital reach projects that are hard to enter, and help those projects reach the right capital.</p>
+        </div>
+
+        <div class="grid grid--4 mt-56">
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg>
+            <h3>Institutional partnerships</h3>
+            <p>Working alongside ministries, state companies and development banks on investment priorities.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+            <h3>Project origination</h3>
+            <p>Early sight of infrastructure, resource and real estate projects before they reach the open market.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>
+            <h3>Regulatory navigation</h3>
+            <p>Local licensing, FX rules and digital asset frameworks, handled with in-country partners.</p>
+          </div>
+          <div class="card asset">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C5F25A" stroke-width="1.6" aria-hidden="true"><path d="M3 12l4-4 4 2 3-2 7 5-4 4-3-2-2 2-3-2-2 1z"/></svg>
+            <h3>Local partners</h3>
+            <p>Trusted teams on the ground who know how deals actually get done.</p>
+          </div>
+        </div>
+
+        <p class="mono muted mt-64 mb-20">how_it_works</p>
+        <ol class="steps">
+          <li><span class="mono accent">01 — Connect</span><span>Introductions through our network of institutions and partners.</span></li>
+          <li><span class="mono accent">02 — Qualify</span><span>Diligence on the project, the partner and the jurisdiction.</span></li>
+          <li><span class="mono accent">03 — Structure</span><span>The right vehicle: equity, debt or tokenized.</span></li>
+          <li><span class="mono accent">04 — Deliver</span><span>A continued presence through execution, not just the introduction.</span></li>
+        </ol>
+
+        <ul class="chips-static">
+          <li>Africa · Gulf · Lusophone world</li>
+          <li>Business-first, apolitical</li>
+          <li>In-country partners</li>
+          <li>[Partner institutions]</li>
+        </ul>
+
+        <div class="grid grid--2 mt-56">
+          <a href="#access" data-role="partner" class="cta cta--lime">
+            <span class="mono">for partners</span>
+            <span class="cta__title">Partner with us →</span>
+            <span>Institutions, project owners and co-investors looking for the right counterpart.</span>
+          </a>
+          <a href="#signal" class="cta">
+            <span class="mono muted">explore</span>
+            <span class="cta__title">Explore the regions →</span>
+            <span class="muted">Where we are active and what we are watching.</span>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- SIGNAL MAP -->
@@ -236,21 +421,6 @@
       </div>
     </section>
 
-    <!-- MARKET ACCESS -->
-    <section id="market-access" class="wrap section--tight pb-112">
-      <div class="split">
-        <div class="split__half">
-          <p class="kicker">// market_access</p>
-          <h2>Access, built on relationships.</h2>
-          <p class="muted lead--sm mt-18">Through long-standing work with state companies, development institutions and private partners across Africa and the Lusophone world, we help capital reach projects that are hard to enter, and help those projects reach the right capital.</p>
-        </div>
-        <ol class="list-num split__half">
-          <li><span class="mono accent">01</span><div><h3>Institutional partnerships</h3><p class="muted">Working alongside ministries, state companies and development banks on investment priorities.</p></div></li>
-          <li><span class="mono accent">02</span><div><h3>Project origination</h3><p class="muted">Early sight of infrastructure, resource and real estate projects before they reach the open market.</p></div></li>
-          <li><span class="mono accent">03</span><div><h3>Regulatory navigation</h3><p class="muted">Local licensing, FX rules and digital asset frameworks, handled with in-country partners.</p></div></li>
-        </ol>
-      </div>
-    </section>
 
     <!-- SIGNALS -->
     <section id="signals" class="band">
