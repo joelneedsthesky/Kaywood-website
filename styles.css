@@ -354,3 +354,13 @@ select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-righ
 .seg__opts label:hover{color:var(--text)}
 .seg__opts input:checked+label{background:var(--lime);color:var(--bg);font-weight:600}
 .seg__opts input:focus-visible+label{outline:2px solid var(--lime);outline-offset:2px}
+
+/* ---------- Proportions: machine fits the screen, tighter section gaps ---------- */
+#machine{padding-top:96px;padding-bottom:40px}
+#machine .machine-grid{margin-top:32px;align-items:center}
+.machine-stage{max-width:none;flex:1 1 280px}
+.machine{width:auto;max-width:100%;height:min(540px,calc(100vh - 210px));min-height:380px}
+.machine-note{margin-top:16px}
+#access{padding-top:48px;padding-bottom:72px}
+.footer{padding-top:8px}
+@media (max-width:860px){.machine{width:100%;max-width:300px;height:auto;min-height:0}#machine{padding-top:72px}}

@@ -318,6 +318,8 @@
       if (busy) return;
       var a = current, d = ASSETS[a];
       reset(); lock(true);
+      var rb = svg.getBoundingClientRect();
+      if (rb.top < 80 || rb.bottom > window.innerHeight) svg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
       inIcon.innerHTML = ICONS[a]; outIcon.innerHTML = ICONS[a];
       status.textContent = 'Feeding the ' + d.name.toLowerCase() + ' into the machine…';
       inAsset.classList.add('show'); await wait(350);
