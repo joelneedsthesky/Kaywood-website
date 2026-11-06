@@ -42,12 +42,28 @@
   <div class="ticker" aria-label="Market prices">
     <div class="wrap ticker__row">
       <span class="ticker__live"><span class="dot"></span> Markets</span>
-      <span>BTC/USD <b data-tick="btc">—</b></span>
-      <span>ETH/USD <b data-tick="eth">—</b></span>
-      <span>EUR/USD <b data-tick="eurusd">—</b></span>
-      <span>USD/AOA <b data-tick="usdaoa">—</b></span>
-      <span>USD/BRL <b data-tick="usdbrl">—</b></span>
-      <span class="ticker__note">Crypto: <a href="https://www.coingecko.com" rel="noopener">CoinGecko</a>/<a href="https://www.coinbase.com" rel="noopener">Coinbase</a> · FX daily: <a href="https://www.exchangerate-api.com" rel="noopener">ExchangeRate-API</a></span>
+      <div class="ticker__viewport">
+        <div class="ticker__track">
+        <div class="ticker__group">
+          <span class="tk">BTC/USD <b data-tick="btc">—</b></span>
+          <span class="tk">ETH/USD <b data-tick="eth">—</b></span>
+          <span class="tk">Gold <b data-tick="xau">—</b></span>
+          <span class="tk">Silver <b data-tick="xag">—</b></span>
+          <span class="tk">EUR/USD <b data-tick="eurusd">—</b></span>
+          <span class="tk">USD/JPY <b data-tick="usdjpy">—</b></span>
+          <span class="tk">GBP/USD <b data-tick="gbpusd">—</b></span>
+        </div>
+        <div class="ticker__group ticker__group--dup" aria-hidden="true">
+          <span class="tk">BTC/USD <b data-tick="btc">—</b></span>
+          <span class="tk">ETH/USD <b data-tick="eth">—</b></span>
+          <span class="tk">Gold <b data-tick="xau">—</b></span>
+          <span class="tk">Silver <b data-tick="xag">—</b></span>
+          <span class="tk">EUR/USD <b data-tick="eurusd">—</b></span>
+          <span class="tk">USD/JPY <b data-tick="usdjpy">—</b></span>
+          <span class="tk">GBP/USD <b data-tick="gbpusd">—</b></span>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -64,7 +80,7 @@
         <a href="#tokenization">Tokenization</a>
         <a href="#signal">Signal map</a>
         <a href="#market-access">Market access</a>
-        <a href="#signals">Signals</a>
+        <a href="/about">About us</a>
         <a href="#access" class="btn btn--primary btn--sm">Request access</a>
       </nav>
     </div>
@@ -577,7 +593,8 @@
   <footer class="wrap footer">
     <p>Kaywood Capital does not offer investment products to the public. Nothing on this site is an offer or solicitation. Tokenized and digital assets carry risk, including loss of capital. [Regulatory status and registered address].</p>
     <div class="footer__side">
-      <div class="footer__links"><a href="/privacy">Privacy</a><a href="mailto:info@kaywoodcapital.com">info@kaywoodcapital.com</a><a href="https://www.linkedin.com/company/[kaywood-capital]" rel="noopener">LinkedIn</a></div>
+      <div class="footer__links"><a href="/privacy">Privacy</a><a href="mailto:info@kaywoodcapital.com">info@kaywoodcapital.com</a><a href="/about">About us</a><a href="https://www.linkedin.com/company/[kaywood-capital]" rel="noopener">LinkedIn</a></div>
+      <span class="mono footer__data">Market data: <a href="https://www.coingecko.com" rel="noopener">CoinGecko</a> · <a href="https://www.coinbase.com" rel="noopener">Coinbase</a> · <a href="https://gold-api.com" rel="noopener">Gold API</a> · <a href="https://www.exchangerate-api.com" rel="noopener">Rates by Exchange Rate API</a>. Indicative only, not for trading.</span>
       <span class="mono">RWA tokenization · Tokenized real estate · NFTs · Digital assets · Global mobility</span>
       <span class="mono">© <span id="year">2026</span> Kaywood Capital</span>
     </div>

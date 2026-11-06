@@ -188,30 +188,52 @@
   }
 
   /* ---------- Ticker ---------- */
+  var tickReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function fmt(n, d) { return Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
-  function setTick(k, v) { var n = document.querySelector('[data-tick="' + k + '"]'); if (n && v) n.textContent = v; }
-  function loadTicker() {
-    if (!window.fetch) return;
-    // Crypto: CoinGecko first, Coinbase as a backup if CoinGecko is busy.
-    function coinbase(pair, key) {
-      return fetch('https://api.coinbase.com/v2/prices/' + pair + '/spot')
-        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-        .then(function (j) { setTick(key, fmt(j.data.amount, 0)); })
-        .catch(function () {});
-    }
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd')
-      .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+  // Writes a value into every matching slot, flipping changed characters like an airport board.
+  function setTick(k, v) {
+    if (!v) return;
+    document.querySelectorAll('[data-tick="' + k + '"]').forEach(function (n) {
+      var old = n.getAttribute('data-v') || '';
+      if (old === v) return;
+      n.setAttribute('data-v', v);
+      if (tickReduce) { n.textContent = v; return; }
+      n.textContent = '';
+      v.split('').forEach(function (c, i) {
+        var s = document.createElement('span');
+        s.textContent = c;
+        if (c !== old.charAt(i)) { s.className = 'flip'; s.style.animationDelay = (i * 45) + 'ms'; }
+        n.appendChild(s);
+      });
+    });
+  }
+  function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(); return r.json(); }); }
+  function coinbase(pair, key, d) { return getJSON('https://api.coinbase.com/v2/prices/' + pair + '/spot').then(function (j) { setTick(key, fmt(j.data.amount, d)); }).catch(function () {}); }
+  function loadCrypto() {
+    // CoinGecko first, Coinbase as a backup if CoinGecko is busy.
+    getJSON('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd')
       .then(function (j) { setTick('btc', fmt(j.bitcoin.usd, 0)); setTick('eth', fmt(j.ethereum.usd, 0)); })
-      .catch(function () { coinbase('BTC-USD', 'btc'); coinbase('ETH-USD', 'eth'); });
-    fetch('https://open.er-api.com/v6/latest/USD')
-      .then(function (r) { return r.json(); })
-      .then(function (j) {
-        var r = j.rates || {};
-        if (r.EUR) setTick('eurusd', fmt(1 / r.EUR, 4));
-        if (r.AOA) setTick('usdaoa', fmt(r.AOA, 1));
-        if (r.BRL) setTick('usdbrl', fmt(r.BRL, 3));
-      })
-      .catch(function () {});
+      .catch(function () { coinbase('BTC-USD', 'btc', 0); coinbase('ETH-USD', 'eth', 0); });
+  }
+  function loadMetals() {
+    // Spot gold and silver (USD per troy ounce). Gold falls back to PAXG, a gold-backed token.
+    getJSON('https://api.gold-api.com/price/XAU').then(function (j) { setTick('xau', '$' + fmt(j.price, 0)); })
+      .catch(function () { coinbase('PAXG-USD', 'xau', 0).then(function () {}); });
+    getJSON('https://api.gold-api.com/price/XAG').then(function (j) { setTick('xag', '$' + fmt(j.price, 2)); }).catch(function () {});
+  }
+  function loadFX() {
+    getJSON('https://open.er-api.com/v6/latest/USD').then(function (j) {
+      var r = j.rates || {};
+      if (r.EUR) setTick('eurusd', fmt(1 / r.EUR, 4));
+      if (r.JPY) setTick('usdjpy', fmt(r.JPY, 2));
+      if (r.GBP) setTick('gbpusd', fmt(1 / r.GBP, 4));
+    }).catch(function () {});
+  }
+  function loadTicker() {
+    if (!window.fetch || !document.querySelector('[data-tick]')) return;
+    loadCrypto(); loadMetals(); loadFX();
+    // Crypto and metals refresh every minute (FX rates are daily).
+    setInterval(function () { if (!document.hidden) { loadCrypto(); loadMetals(); } }, 60000);
   }
 
   /* ---------- Forms ---------- */
