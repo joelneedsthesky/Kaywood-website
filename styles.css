@@ -364,3 +364,35 @@ select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-righ
 #access{padding-top:48px;padding-bottom:72px}
 .footer{padding-top:8px}
 @media (max-width:860px){.machine{width:100%;max-width:300px;height:auto;min-height:0}#machine{padding-top:72px}}
+
+/* ---------- Signal map v2: overview list, tour, left labels ---------- */
+.node--left .node__label{left:auto;right:34px}
+.panel{position:relative;overflow:hidden}
+.panel__intro{color:var(--muted);font-size:15px;line-height:1.5}
+.panel__list{display:flex;flex-direction:column;max-height:300px;overflow-y:auto;margin:0 -8px;padding:0 8px;border-top:1px solid var(--line);scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.panel__row{display:flex;align-items:center;gap:14px;min-height:48px;padding:8px 0;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);text-align:left;cursor:pointer;font:inherit;transition:color .2s,padding .2s}
+.panel__row:hover,.panel__row:focus-visible{padding-left:6px;color:var(--lime)}
+.panel__code{width:26px;flex:none;font-size:12px}
+.panel__rowtxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.panel__rowname{font-size:15px;font-weight:500}
+.panel__rowtags{font-size:11px}
+.panel__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:4px}
+.panel__nav{display:flex;align-items:center;gap:8px}
+.panel__arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:transparent;color:var(--text);font:18px var(--sans);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.panel__arrow:hover{border-color:var(--lime);color:var(--lime)}
+.panel__dots{display:flex;gap:5px}
+.panel__dot{width:6px;height:6px;border-radius:50%;background:var(--line-2);transition:background .2s,width .2s}
+.panel__dot.on{width:16px;border-radius:3px;background:var(--lime)}
+.panel__count{font-size:11px}
+.panel__back{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--text);cursor:pointer;font-size:12px}
+.panel__back:hover{border-color:var(--lime);color:var(--lime)}
+.panel__signals{margin-top:0}
+.panel a.panel__signals{margin-top:4px}
+.panel__prog{position:absolute;left:0;right:0;top:0;height:2px;background:transparent}
+.panel__prog span{display:block;height:100%;width:0;background:var(--lime);animation:panelProg 5s linear forwards}
+.panel.is-paused .panel__prog span{animation-play-state:paused}
+@keyframes panelProg{to{width:100%}}
+@media (prefers-reduced-motion:reduce){.panel__prog{display:none}}
+.badge{white-space:nowrap}
+.panel__top .mono{min-width:0}
+.map-card{display:flex;flex-direction:column;justify-content:center}

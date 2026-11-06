@@ -11,22 +11,31 @@
     newsletterEmail: 'signals@kaywoodcapital.com'
   };
 
-  /* ---------- Signal map data (edit regions here) ---------- */
+  /* ---------- Signal map data (edit regions here) ----------
+     x / y are % positions on the map. labelLeft puts the code on the left of the dot.
+     pillars decide which filter lights the node up. */
   var REGIONS = [
-    { id: 'ao', code: 'AO', name: 'Angola', x: 53.6, y: 63.75, status: 'Core focus', pillars: ['Tokenization', 'Macro', 'Market access'], themes: ['Kwanza (AOA) liquidity and FX reform', 'Diversification beyond oil', 'Real estate and infrastructure for tokenization', 'Institutional partnerships'] },
-    { id: 'mz', code: 'MZ', name: 'Mozambique', x: 59.1, y: 75.5, status: 'Watching', pillars: ['Macro', 'Market access'], themes: ['LNG-linked investment', 'Metical stability', 'Port and corridor infrastructure'] },
-    { id: 'wa', code: 'NG·GH', name: 'Nigeria & Ghana', x: 50.8, y: 53, status: 'Active research', pillars: ['Crypto', 'Macro'], themes: ['Naira and cedi currency reforms', 'Stablecoin adoption and remittances', 'Fintech and digital payment rails'] },
-    { id: 'pt', code: 'PT', name: 'Portugal', x: 47.5, y: 30.6, status: 'Home base', pillars: ['Tokenization', 'Crypto'], themes: ['EU gateway for Lusophone capital', 'Lisbon property as tokenized assets', 'MiCA and the DLT Pilot Regime'] },
-    { id: 'br', code: 'BR', name: 'Brazil', x: 37.2, y: 73.75, status: 'Watching', pillars: ['Tokenization', 'Crypto', 'Macro'], themes: ['The real (BRL) and the rate cycle', 'Central bank tokenization pilots', 'Lusophone trade links with Africa'] },
-    { id: 'ae', code: 'AE', name: 'UAE & Gulf', x: 65.3, y: 40.1, status: 'Partner market', pillars: ['Tokenization', 'Crypto', 'Market access'], themes: ['Sovereign capital flows into Africa', 'Digital asset licensing hubs', 'Investor demand for tokenized real assets'] },
-    { id: 'us', code: 'US', name: 'United States', x: 29.4, y: 29.2, status: 'Macro driver', pillars: ['Macro', 'Crypto', 'Tokenization'], themes: ['Federal Reserve policy and the dollar', 'Crypto ETF flows', 'Tokenized treasuries and funds'] },
-    { id: 'cn', code: 'CN', name: 'China', x: 83.6, y: 36, status: 'Macro driver', pillars: ['Macro', 'Market access'], themes: ['Yuan internationalisation', 'Commodity demand and investment in Africa', 'Supply-chain realignment'] }
+    { id: 'pt', code: 'PT', name: 'Portugal', x: 47.5, y: 30.6, status: 'Home base', pillars: ['Tokenization', 'Crypto'], themes: ['Lisbon property as tokenized assets', 'MiCA and the DLT Pilot Regime', 'EU gateway for Lusophone capital'] },
+    { id: 'ao', code: 'AO', name: 'Angola', x: 53.6, y: 63.75, status: 'Core focus', pillars: ['Tokenization', 'Market access'], themes: ['Kwanza (AOA) liquidity and FX reform', 'Diversification beyond oil', 'Real estate and infrastructure for tokenization', 'Institutional partnerships'] },
+    { id: 'ae', code: 'AE', name: 'UAE & Gulf', x: 65.3, y: 40.1, status: 'Partner market', pillars: ['Tokenization', 'Crypto'], themes: ['Digital asset licensing hubs', 'Investor demand for tokenized real assets', 'Sovereign capital flows into Africa'] },
+    { id: 'mz', code: 'MZ', name: 'Mozambique', x: 59.1, y: 75.5, status: 'Market access', pillars: ['Tokenization', 'Market access'], themes: ['LNG-linked investment', 'Port and corridor infrastructure', 'Lusophone real estate opportunities'] },
+    { id: 'br', code: 'BR', name: 'Brazil', x: 37.2, y: 73.75, status: 'Lusophone market', pillars: ['Tokenization'], themes: ['Lusophone trade links with Africa', 'Tokenization and digital asset regulation', 'A large, digital-first investor base'] },
+    { id: 'st', code: 'ST', name: 'São Tomé & Príncipe', x: 51.9, y: 57.3, labelLeft: true, status: 'Emerging opportunity', pillars: ['Tokenization'], themes: ['Lusophone island economy', 'Tourism and real estate assets', 'A small market suited to early tokenization'] },
+    { id: 'ng', code: 'NG', name: 'Nigeria', x: 50.9, y: 53, status: 'Market access', pillars: ['Market access'], themes: ['Naira reforms and fintech rails', 'Local stablecoins such as cNGN', 'Institutional and private partnerships'] },
+    { id: 'lr', code: 'LR', name: 'Liberia', x: 47.0, y: 53.1, labelLeft: true, status: 'Market access', pillars: ['Market access'], themes: ['Resource and infrastructure projects', 'A dollarized economy (USD alongside LRD)', 'Early-stage partnerships'] },
+    { id: 'rs', code: 'RS', name: 'Serbia', x: 55.7, y: 26.4, labelLeft: true, status: 'Market access', pillars: ['Market access'], themes: ['Gateway to Southeast Europe', 'Infrastructure and energy projects', 'Partnerships in the Western Balkans'] },
+    { id: 'us', code: 'US', name: 'United States', x: 29.4, y: 29.2, status: 'Macro driver', pillars: ['Crypto', 'Macro'], themes: ['Federal Reserve policy and the dollar', 'Stablecoin law (GENIUS Act)', 'Crypto ETF flows'] },
+    { id: 'cn', code: 'CN', name: 'China', x: 83.6, y: 36, status: 'Macro driver', pillars: ['Macro'], themes: ['Growth and commodity demand', 'Yuan internationalisation', 'Investment in Africa'] },
+    { id: 'sv', code: 'SV', name: 'El Salvador', x: 25.3, y: 48.0, status: 'Crypto watch', pillars: ['Crypto'], themes: ['Bitcoin adoption at national level', 'Digital asset licensing framework', 'Lessons for emerging-market adoption'] },
+    { id: 'tr', code: 'TR', name: 'Türkiye', x: 59.1, y: 29.8, status: 'Crypto watch', pillars: ['Crypto'], themes: ['High retail crypto adoption', 'Lira volatility and stablecoin demand', 'A bridge between Europe, the Gulf and Asia'] }
   ];
   var PILLARS = ['All', 'Tokenization', 'Crypto', 'Macro', 'Market access'];
   var HUB = { x: 475, y: 142 };      // Lisbon in map coordinates
-  var HUB2 = { x: 536, y: 275 };     // Luanda
+  var ROTATE_MS = 5000;              // slideshow speed when a filter is selected
 
-  var state = { sel: 'ao', pillar: 'All' };
+  var state = { pillar: 'All', sel: null, slide: 0, paused: false };
+  var mapTimer = null;
+  var mapReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function $(s, r) { return (r || document).querySelector(s); }
   function el(tag, attrs, text) {
@@ -35,6 +44,8 @@
     if (text != null) n.textContent = text;
     return n;
   }
+  function byId(id) { return REGIONS.filter(function (x) { return x.id === id; })[0]; }
+  function inPillar(p) { return REGIONS.filter(function (r) { return p === 'All' || r.pillars.indexOf(p) !== -1; }); }
 
   /* ---------- Map ---------- */
   function buildGrid() {
@@ -45,8 +56,8 @@
   }
 
   function arcFor(r) {
-    var tx = r.x * 10, ty = r.y * 4 + 20;
-    var f = r.id === 'pt' ? HUB2 : HUB;
+    if (r.id === 'pt') return '';
+    var tx = r.x * 10, ty = r.y * 4 + 20, f = HUB;
     var dx = tx - f.x, dy = ty - f.y, dist = Math.sqrt(dx * dx + dy * dy);
     var cx = (f.x + tx) / 2, cy = Math.min(f.y, ty) - dist * 0.25;
     return 'M' + f.x + ',' + f.y + ' Q' + cx.toFixed(1) + ',' + cy.toFixed(1) + ' ' + tx.toFixed(1) + ',' + ty.toFixed(1);
@@ -56,7 +67,7 @@
     var wrap = $('#filters'); if (!wrap) return;
     PILLARS.forEach(function (p) {
       var b = el('button', { type: 'button', 'class': 'chip', 'aria-pressed': p === state.pillar ? 'true' : 'false' }, p);
-      b.addEventListener('click', function () { state.pillar = p; render(); });
+      b.addEventListener('click', function () { state.pillar = p; state.sel = null; state.slide = 0; render(true); restartTimer(); });
       wrap.appendChild(b);
     });
   }
@@ -64,18 +75,49 @@
   function buildNodes() {
     var wrap = $('#nodes'); if (!wrap) return;
     REGIONS.forEach(function (r) {
-      var b = el('button', { type: 'button', 'class': 'node', 'data-id': r.id, 'aria-label': r.name + ' — ' + r.status });
+      var b = el('button', { type: 'button', 'class': 'node' + (r.labelLeft ? ' node--left' : ''), 'data-id': r.id, 'aria-label': r.name + ' — ' + r.status });
       b.style.left = r.x + '%'; b.style.top = r.y + '%';
       b.appendChild(el('span', { 'class': 'node__dot', 'aria-hidden': 'true' }));
       b.appendChild(el('span', { 'class': 'node__label', 'aria-hidden': 'true' }, r.code));
-      b.addEventListener('click', function () { if (state.sel !== r.id) { state.sel = r.id; render(true); } });
+      b.addEventListener('click', function () { selectCountry(r.id); });
       wrap.appendChild(b);
     });
   }
 
-  function renderPanel(r, animate) {
-    var p = $('#panel'); if (!p) return;
-    p.innerHTML = '';
+  function selectCountry(id) { state.sel = id; clearInterval(mapTimer); render(true); }
+
+  function shownId() {
+    if (state.sel) return state.sel;
+    if (state.pillar === 'All') return null;
+    var list = inPillar(state.pillar);
+    return list.length ? list[state.slide % list.length].id : null;
+  }
+
+  function signalsLink(p) { p.appendChild(el('a', { href: '#signals', 'class': 'panel__signals' }, 'latest_signals →')); }
+
+  function renderOverview(p) {
+    var top = el('div', { 'class': 'panel__top' });
+    top.appendChild(el('span', { 'class': 'mono muted' }, 'overview / all markets'));
+    top.appendChild(el('span', { 'class': 'badge' }, REGIONS.length + ' markets'));
+    p.appendChild(top);
+    p.appendChild(el('h3', {}, 'Our map'));
+    p.appendChild(el('p', { 'class': 'panel__intro' }, 'Each node is a market where Kaywood is active or watching, linked back to our hub in Lisbon. Filter by pillar to see where each part of the business works, or pick a market below.'));
+    var list = el('div', { 'class': 'panel__list' });
+    REGIONS.forEach(function (r) {
+      var row = el('button', { type: 'button', 'class': 'panel__row' });
+      row.appendChild(el('span', { 'class': 'mono accent panel__code' }, r.code));
+      var txt = el('span', { 'class': 'panel__rowtxt' });
+      txt.appendChild(el('span', { 'class': 'panel__rowname' }, r.name));
+      txt.appendChild(el('span', { 'class': 'mono muted panel__rowtags' }, r.pillars.join(' · ')));
+      row.appendChild(txt);
+      row.addEventListener('click', function () { selectCountry(r.id); });
+      list.appendChild(row);
+    });
+    p.appendChild(list);
+    signalsLink(p);
+  }
+
+  function renderBrief(p, r) {
     var top = el('div', { 'class': 'panel__top' });
     top.appendChild(el('span', { 'class': 'mono muted' }, 'node / ' + r.code));
     top.appendChild(el('span', { 'class': 'badge' }, r.status));
@@ -85,26 +127,64 @@
     var ul = el('ul', {});
     r.themes.forEach(function (t) { ul.appendChild(el('li', {}, t)); });
     p.appendChild(ul);
-    p.appendChild(el('a', { href: '#signals' }, 'latest_signals →'));
-    if (animate) { p.classList.remove('fade'); void p.offsetWidth; p.classList.add('fade'); }
+
+    var foot = el('div', { 'class': 'panel__foot' });
+    if (state.sel) {
+      var back = el('button', { type: 'button', 'class': 'panel__back mono' }, state.pillar === 'All' ? '← all markets' : '← back to ' + state.pillar.toLowerCase() + ' tour');
+      back.addEventListener('click', function () { state.sel = null; render(true); restartTimer(); });
+      foot.appendChild(back);
+    } else {
+      var list = inPillar(state.pillar), idx = state.slide % list.length;
+      var nav = el('div', { 'class': 'panel__nav' });
+      var prev = el('button', { type: 'button', 'class': 'panel__arrow', 'aria-label': 'Previous market' }, '‹');
+      var next = el('button', { type: 'button', 'class': 'panel__arrow', 'aria-label': 'Next market' }, '›');
+      prev.addEventListener('click', function () { state.slide = (idx - 1 + list.length) % list.length; render(true); restartTimer(); });
+      next.addEventListener('click', function () { state.slide = (idx + 1) % list.length; render(true); restartTimer(); });
+      var dots = el('span', { 'class': 'panel__dots', 'aria-hidden': 'true' });
+      list.forEach(function (x, i) { dots.appendChild(el('span', { 'class': 'panel__dot' + (i === idx ? ' on' : '') })); });
+      nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next);
+      foot.appendChild(nav);
+      foot.appendChild(el('span', { 'class': 'mono muted panel__count' }, state.pillar.toLowerCase() + ' · ' + (idx + 1) + '/' + list.length));
+      if (!mapReduce && list.length > 1) { var bar = el('span', { 'class': 'panel__prog', 'aria-hidden': 'true' }); bar.appendChild(el('span', {})); p.appendChild(bar); }
+    }
+    p.appendChild(foot);
+    signalsLink(p);
   }
 
   function render(animate) {
-    var active = 0;
+    var active = 0, sid = shownId();
     document.querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c.textContent === state.pillar ? 'true' : 'false'); });
     document.querySelectorAll('.node').forEach(function (n) {
-      var r = REGIONS.filter(function (x) { return x.id === n.getAttribute('data-id'); })[0];
+      var r = byId(n.getAttribute('data-id'));
       var on = state.pillar === 'All' || r.pillars.indexOf(state.pillar) !== -1;
       if (on) active++;
       n.classList.toggle('is-dim', !on);
-      n.classList.toggle('is-active', r.id === state.sel);
-      n.setAttribute('aria-pressed', r.id === state.sel ? 'true' : 'false');
+      n.classList.toggle('is-active', r.id === sid);
+      n.setAttribute('aria-pressed', r.id === sid ? 'true' : 'false');
     });
-    var cur = REGIONS.filter(function (x) { return x.id === state.sel; })[0];
     var arc = $('#arc');
-    if (arc) { arc.setAttribute('d', arcFor(cur)); arc.classList.remove('draw'); void arc.getBoundingClientRect(); arc.classList.add('draw'); }
+    if (arc) { var d = sid ? arcFor(byId(sid)) : ''; arc.setAttribute('d', d); arc.classList.remove('draw'); if (d) { void arc.getBoundingClientRect(); arc.classList.add('draw'); } }
     var count = $('#count'); if (count) count.textContent = 'nodes_active: ' + active + '/' + REGIONS.length;
-    renderPanel(cur, animate);
+    var p = $('#panel'); if (!p) return;
+    p.innerHTML = '';
+    if (sid) renderBrief(p, byId(sid)); else renderOverview(p);
+    if (animate) { p.classList.remove('fade'); void p.offsetWidth; p.classList.add('fade'); }
+  }
+
+  function restartTimer() {
+    clearInterval(mapTimer);
+    if (mapReduce || state.pillar === 'All' || state.sel) return;
+    mapTimer = setInterval(function () {
+      if (state.paused || state.sel || state.pillar === 'All' || document.hidden) return;
+      var n = inPillar(state.pillar).length; if (n < 2) return;
+      state.slide = (state.slide + 1) % n; render(true);
+    }, ROTATE_MS);
+  }
+
+  function initMapPause() {
+    var p = $('#panel'); if (!p) return;
+    p.addEventListener('mouseenter', function () { state.paused = true; p.classList.add('is-paused'); });
+    p.addEventListener('mouseleave', function () { state.paused = false; p.classList.remove('is-paused'); if (state.pillar !== 'All' && !state.sel) { render(false); restartTimer(); } });
   }
 
   /* ---------- Ticker ---------- */
@@ -434,7 +514,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    if ($('#map')) { buildGrid(); buildFilters(); buildNodes(); render(false); }
+    if ($('#map')) { buildGrid(); buildFilters(); buildNodes(); render(false); initMapPause(); }
     loadTicker();
     document.querySelectorAll('form[data-form]').forEach(handleForm);
     initNav(); initCtas(); initTabs(); initMeshBg(); initMachine();
