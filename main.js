@@ -13,16 +13,16 @@
 
   /* ---------- Signal map data (edit regions here) ---------- */
   var REGIONS = [
-    { id: 'ao', code: 'AO', name: 'Angola', x: 53.6, y: 63.75, status: 'Core focus', pillars: ['Tokenization', 'FX', 'Market access'], themes: ['Kwanza (AOA) liquidity and FX reform', 'Diversification beyond oil', 'Real estate and infrastructure for tokenization', 'Institutional partnerships'] },
-    { id: 'mz', code: 'MZ', name: 'Mozambique', x: 59.1, y: 75.5, status: 'Watching', pillars: ['FX', 'Market access'], themes: ['LNG-linked investment', 'Metical stability', 'Port and corridor infrastructure'] },
-    { id: 'wa', code: 'NG·GH', name: 'Nigeria & Ghana', x: 50.8, y: 53, status: 'Active research', pillars: ['Crypto', 'FX'], themes: ['Naira and cedi currency reforms', 'Stablecoin adoption and remittances', 'Fintech and digital payment rails'] },
+    { id: 'ao', code: 'AO', name: 'Angola', x: 53.6, y: 63.75, status: 'Core focus', pillars: ['Tokenization', 'Macro', 'Market access'], themes: ['Kwanza (AOA) liquidity and FX reform', 'Diversification beyond oil', 'Real estate and infrastructure for tokenization', 'Institutional partnerships'] },
+    { id: 'mz', code: 'MZ', name: 'Mozambique', x: 59.1, y: 75.5, status: 'Watching', pillars: ['Macro', 'Market access'], themes: ['LNG-linked investment', 'Metical stability', 'Port and corridor infrastructure'] },
+    { id: 'wa', code: 'NG·GH', name: 'Nigeria & Ghana', x: 50.8, y: 53, status: 'Active research', pillars: ['Crypto', 'Macro'], themes: ['Naira and cedi currency reforms', 'Stablecoin adoption and remittances', 'Fintech and digital payment rails'] },
     { id: 'pt', code: 'PT', name: 'Portugal', x: 47.5, y: 30.6, status: 'Home base', pillars: ['Tokenization', 'Crypto'], themes: ['EU gateway for Lusophone capital', 'Lisbon property as tokenized assets', 'MiCA and the DLT Pilot Regime'] },
-    { id: 'br', code: 'BR', name: 'Brazil', x: 37.2, y: 73.75, status: 'Watching', pillars: ['Tokenization', 'Crypto', 'FX'], themes: ['The real (BRL) and the rate cycle', 'Central bank tokenization pilots', 'Lusophone trade links with Africa'] },
+    { id: 'br', code: 'BR', name: 'Brazil', x: 37.2, y: 73.75, status: 'Watching', pillars: ['Tokenization', 'Crypto', 'Macro'], themes: ['The real (BRL) and the rate cycle', 'Central bank tokenization pilots', 'Lusophone trade links with Africa'] },
     { id: 'ae', code: 'AE', name: 'UAE & Gulf', x: 65.3, y: 40.1, status: 'Partner market', pillars: ['Tokenization', 'Crypto', 'Market access'], themes: ['Sovereign capital flows into Africa', 'Digital asset licensing hubs', 'Investor demand for tokenized real assets'] },
-    { id: 'us', code: 'US', name: 'United States', x: 29.4, y: 29.2, status: 'Macro driver', pillars: ['FX', 'Crypto', 'Tokenization'], themes: ['Federal Reserve policy and the dollar', 'Crypto ETF flows', 'Tokenized treasuries and funds'] },
-    { id: 'cn', code: 'CN', name: 'China', x: 83.6, y: 36, status: 'Macro driver', pillars: ['FX', 'Market access'], themes: ['Yuan internationalisation', 'Commodity demand and investment in Africa', 'Supply-chain realignment'] }
+    { id: 'us', code: 'US', name: 'United States', x: 29.4, y: 29.2, status: 'Macro driver', pillars: ['Macro', 'Crypto', 'Tokenization'], themes: ['Federal Reserve policy and the dollar', 'Crypto ETF flows', 'Tokenized treasuries and funds'] },
+    { id: 'cn', code: 'CN', name: 'China', x: 83.6, y: 36, status: 'Macro driver', pillars: ['Macro', 'Market access'], themes: ['Yuan internationalisation', 'Commodity demand and investment in Africa', 'Supply-chain realignment'] }
   ];
-  var PILLARS = ['All', 'Tokenization', 'Crypto', 'FX', 'Market access'];
+  var PILLARS = ['All', 'Tokenization', 'Crypto', 'Macro', 'Market access'];
   var HUB = { x: 475, y: 142 };      // Lisbon in map coordinates
   var HUB2 = { x: 536, y: 275 };     // Luanda
 
